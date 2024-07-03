@@ -7,7 +7,7 @@ type Result<T, E = Box<dyn std::error::Error>> = std::result::Result<T, E>;
 fn main() -> Result<()> {
     loop {
         // print the shell interface so the user knows the program is ready for input.
-        print!("db >");
+        print!("\ndb >");
         std::io::stdout().flush().unwrap();
         let mut buffer: String = String::new();
         stdin().read_line(&mut buffer)?;
@@ -18,7 +18,7 @@ fn main() -> Result<()> {
                     // meta command
                     // prepare / parse first
                     // if okay then execute
-                    print!("Performing meta command.");
+                    print!("\nPerforming meta command.");
                     parse_meta_commands();
                     meta_commands(buffer.to_lowercase().trim());
                 }
@@ -45,7 +45,7 @@ fn meta_commands(command: &str) -> u32 {
             exit(0);
         },
         _ => {
-            println!("Unreckognized meta command.");
+            print!("\nUnreckognized meta command");
             return 1;
         }
     }
