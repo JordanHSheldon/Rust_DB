@@ -1,3 +1,0 @@
-enum meta_command {
-
-}

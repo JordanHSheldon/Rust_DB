@@ -13,38 +13,30 @@ fn main() -> Result<()> {
         stdin().read_line(&mut buffer)?;
 
         if let Some(is_meta) = buffer.chars().next() {
-            // meta command
             match is_meta {
                 '.' => {
                     // meta command
+                    // prepare / parse first
+                    // if okay then execute
                     print!("Performing meta command.");
-                    meta_commands(buffer.trim());
-                    exit(0);
+                    parse_meta_commands();
+                    meta_commands(buffer.to_lowercase().trim());
                 }
                 _ => {
                     // db command.
-                    println!("{}",buffer);
-                    println!("Unreckognized command.")
+                    // prepare / parse first
+                    // if okay then execute
+                    parse_db_commands();
+                    db_commands(buffer.to_lowercase().trim());
                 }
             }
-        } else {
-            // db commands
-            match buffer.trim().to_lowercase().as_str() {
-                "select" => {
-                    // meta command
-                    print!("Performing meta command.");
-                    meta_commands(buffer.trim());
-                    exit(0);
-                }
-                _ => {
-                    // db command.
-                    println!("{}",buffer);
-                    println!("Unreckognized command.")
-                }
-            }
-        }
         
+        }
     }
+}
+
+fn parse_meta_commands(){
+
 }
 
 fn meta_commands(command: &str) -> u32 {
@@ -57,4 +49,34 @@ fn meta_commands(command: &str) -> u32 {
             return 1;
         }
     }
+}
+
+fn parse_db_commands(){
+    
+}
+
+fn db_commands(command: &str) -> u32 {
+    match command {
+        "select" => {
+            // meta command
+            print!("\nSelect not yet supported.");
+        }
+        "insert" => {
+            // meta command
+            print!("\nInsert not yet supported.");
+        }
+        "delete" => {
+            // meta command
+            print!("\ndelete not yet supported.");
+        }
+        "update" => {
+            // meta command
+            print!("\nUpdate not yet supported.");
+        }
+        _ => {
+            print!("\nUnknown command.");
+        }
+    }
+
+    return 1;
 }
